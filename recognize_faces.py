@@ -4,6 +4,8 @@ import face_recognition
 import pandas as pd
 import numpy as np
 import pickle
+import datetime
+from pymongo import MongoClient
 
 
 ############################ Generate Encodings ######################
@@ -13,6 +15,9 @@ all_face_encodings = {}
 
 neha_img = face_recognition.load_image_file("images/Neha_Koppikar/0.jpg")
 all_face_encodings["Neha_Koppikar"] = face_recognition.face_encodings(neha_img)[0]
+
+namrata_img = face_recognition.load_image_file("images/Namrata_Koppikar/0.jpg")
+all_face_encodings["Namrata_Koppikar"] = face_recognition.face_encodings(namrata_img)[0]
 
 
 with open('dataset_faces.dat', 'wb') as f:
@@ -118,6 +123,20 @@ def recognize_frame(frame):
 
 ###############################################################################################################
 
+################ Database - MongoDB #####################
+@st.cache(hash_funcs={MongoClient: id})
+def get_client():
+    return MongoClient("mongodb://localhost:27017/")
+
+# Connect to client
+client = get_client()
+
+# Connect to DB
+visitor = client.get_database('visitor')
+
+# Get the particular collection that contains the data
+visit_records = visitor.register
+
 
 ########################### Main APP ####################################
 
@@ -127,6 +146,8 @@ while(True):
     video_capture = cv2.VideoCapture(0)
     frame = capture_face(video_capture)
     name, similarity, frame = recognize_frame(frame)
+    visitor_input = {'Name': name, 'Date': datetime.datetime.today().strftime("%d %B, %Y") , "Time": datetime.datetime.now().strftime("%H:%M:%S")}
+    visit_records.insert_one(visitor_input)
     FRAME_WINDOW.image(frame)
     if similarity > 0.75:
         label = f"**{name}**: *{similarity:.2%} likely*"
