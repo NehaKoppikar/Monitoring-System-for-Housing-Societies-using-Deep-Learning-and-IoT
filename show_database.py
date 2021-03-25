@@ -10,6 +10,8 @@ def connect_to_registration_db():
     all_records_df = pd.DataFrame.from_records(records.find())
     return all_records_df
 
+st.title("View Database")
+
 db_option = st.radio(
     "Which database do you want to view?",
     ('Registration-DB', 'Visitor-DB'))
@@ -22,7 +24,9 @@ if db_option == 'Registration-DB':
     st.dataframe(all_records_df)  
     
 
-# elif db_option == "Non-Resident":
-#     st.write('You selected Non-Resident.')
 else:
-    st.write("You chose visitor data")
+    client = pymongo.MongoClient("mongodb://localhost:27017/")
+    visitor = client.get_database('visitor')
+    visit_records = visitor.register
+    visitor_df = pd.DataFrame.from_records(visit_records.find())
+    st.dataframe(visitor_df)
