@@ -114,7 +114,7 @@ while True:
     
         #ret, frame = cap.read()
         frame = cap.read()
-        cv2.imwrite(f'../images/{first_name}_{last_name}/{count}.jpg', frame) # store images in file path 
+        cv2.imwrite(f'images/{first_name}_{last_name}/{count}.jpg', frame) # store images in file path 
         #orig = frame.copy()
         #io.imwrite(f'images/{first_name}_{last_name}/{count}.jpg', frame) # store image
         #orig = frame.copy()
