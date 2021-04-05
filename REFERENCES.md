@@ -2,4 +2,11 @@
 1. [Face-Recognition from webcam using streamlit](https://github.com/Nyahua/streamlit-cv/blob/master/facerec/face_recognition_from_webcam.py)
 1. [Streamlit discussion forum](https://discuss.streamlit.io/)
 1. [Streamlit documentation](https://docs.streamlit.io/en/stable/)
+1. [Sendgrid UI Working](https://sendgrid.com/docs/ui/sending-email/email-flow/)
+1. [Sendgrid Personalization](https://sendgrid.com/docs/for-developers/sending-email/personalizations/)
+1. [Sendgrid for Python](https://github.com/sendgrid/sendgrid-python)  
+1. [How to send emails from sendgrid](https://www.twilio.com/blog/how-to-send-emails-in-python-with-sendgrid)
+1. [Install MongoDB on Raspberry Pi](https://pimylifeup.com/mongodb-raspberry-pi/#:~:text=The%20first%20path%20is%20to,64%2Dbit%20version%20of%20Ubuntu.)
+1. [MongoDB Installation fix for Raspberry Pi](https://stackoverflow.com/questions/28945921/e-unable-to-locate-package-mongodb-org)
+1. [Streamlit on Raspberry Pi](https://discuss.streamlit.io/t/raspberry-pi-streamlit/2900/7)   
  
